@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h3>audioplayer</h3>
+<p>
+    flashvars 通过 URL 传入：
+<ul>
+    <li>checkPolicyFile: true or false</li>
+    <li>url: mp3 url</li>
+</ul>
+</p>
+
+
+<script>
+
+    function getFlashVar() {
+        let params = (new URL(document.location)).searchParams;
+        return {
+            url: params.get('url'),
+            checkPolicyFile: params.get('checkPolicyFile')
+        }
+    }
+
+    function __flash_init() {
+        console.log('__flash_init');
+        let flashVars = getFlashVar();
+        console.log(flashVars);
+        SWF.load(flashVars.url, flashVars.checkPolicyFile === 'true')
+    }
+
+    function insertAudioPlayer() {
+        let obj = document.createElement('object');
+        obj.id = 'SWF';
+        obj.data = 'audioplayer.swf';
+        obj.setAttribute('allowscriptaccess', 'always');
+        obj.setAttribute('width', '500');
+        obj.setAttribute('height', '500');
+        document.body.appendChild(obj);
+    }
+
+    insertAudioPlayer();
+</script>
+
+</body>
+</html>
