@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h3>FLVPlayback wrapper</h3>
+<p>
+    flashvars 通过 URL 传入：
+<ul>
+    <li>url: flv url</li>
+</ul>
+</p>
+
+
+<script>
+
+    function getFlashVar() {
+        let params = (new URL(document.location)).searchParams;
+        return {
+            url: params.get('url')
+        }
+    }
+
+    function __flash_init() {
+        console.log('__flash_init');
+        let flashVars = getFlashVar();
+        SWF.load(flashVars.url)
+    }
+
+    function insertAudioPlayer() {
+        let obj = document.createElement('object');
+        obj.id = 'SWF';
+        obj.data = 'flv_playback_wrapper.swf';
+        obj.setAttribute('allowscriptaccess', 'always');
+        obj.setAttribute('width', '500');
+        obj.setAttribute('height', '500');
+        document.body.appendChild(obj);
+    }
+
+    insertAudioPlayer();
+</script>
+
+</body>
+</html>
