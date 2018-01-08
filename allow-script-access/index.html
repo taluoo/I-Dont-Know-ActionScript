@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+尝试改变 allowScriptAccess 的值，查看不同的结果。
+
+<ul>
+    <li>当使用本域 Main.swf ，且 allowScriptAccess 值为 never 时：
+        <p>SecurityError: Error #2060: 安全沙箱冲突:ExternalInterface 调用者
+            http://www.xxx.com/allow-script-access/Main.swf 不能访问
+            http://www.xxx.com/allow-script-access/index.html。
+        </p>
+    </li>
+    <li>
+        当使用外域 http://outer.com/allow-script-access/Main.swf，且 allowScriptAccess 值不是 always 时
+        <p>
+            SecurityError: Error #2060: 安全沙箱冲突:ExternalInterface 调用者 http://outer.com/allow-script-access/Main.swf 不能访问
+            http://www.xxx.com/allow-script-access/index.html。
+        </p>
+    </li>
+    <li>
+        貌似 param 参数优先级高于 object 属性
+    </li>
+</ul>
+
+
+<object allowscriptaccess="never" data="./Main.swf" type="" width="500" height="500">
+    <param name="allowscriptaccess" value="always">
+</object>
+</body>
+</html>
