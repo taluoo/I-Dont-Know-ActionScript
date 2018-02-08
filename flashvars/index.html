@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+查看 flashlog.txt
+<p>
+    PS： Flash 对 FlashVars value 应该先 HTML 解码，再 URL 解码
+</p>
+
+<object data="flashvars.swf?input1=111&#x25;22&#x25;3C&#x25;3E" type="">
+    <param name="flashvars" value="input2=222&#x25;22&#x25;3C&#x25;3E">
+</object>
+
+<embed src="flashvars.swf?input3=333&#x25;22&#x25;3C&#x25;3E" type="">
+</body>
+</html>
